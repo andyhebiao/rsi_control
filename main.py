@@ -40,8 +40,9 @@ class RsiApp(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.parameter_sections_dict = {}
+        com_func.load_config(self, "./config_files/kuka__kr10.cfg", self.ui.pte_com_log.appendPlainText)
         com_ini.init_args(self)
-        com_func.load_config(self, self.ui.pte_com_log.appendPlainText)
+
 
 
         # self.ui.hs_front_limit.valueChanged.connect(self.cut_depth)

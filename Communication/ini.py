@@ -32,5 +32,7 @@ def init_args(self):
     self.ui.pb_export_rsi_com_config.clicked.connect(
         lambda: export_config_file(self, self.parameter_sections_dict, self.ui.pte_com_log.appendPlainText))
 
+
+
     # ui
     self.ui.pb_stop_rsi_com.setDisabled(True)

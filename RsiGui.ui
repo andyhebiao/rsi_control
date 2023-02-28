@@ -519,7 +519,7 @@
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="label_7">
+            <widget class="QLabel" name="ql_pose_limits_2">
              <property name="text">
               <string>Y</string>
              </property>
@@ -529,7 +529,7 @@
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="ql_pose_limits_1">
              <property name="text">
               <string>X</string>
              </property>
@@ -555,7 +555,7 @@
             </widget>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label_5">
+            <widget class="QLabel" name="ql_pose_limits_4">
              <property name="text">
               <string>A</string>
              </property>
@@ -565,7 +565,7 @@
             </widget>
            </item>
            <item row="5" column="0">
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="ql_pose_limits_5">
              <property name="text">
               <string>B</string>
              </property>
@@ -618,7 +618,7 @@
             </widget>
            </item>
            <item row="6" column="0">
-            <widget class="QLabel" name="label_11">
+            <widget class="QLabel" name="ql_pose_limits_6">
              <property name="text">
               <string>C</string>
              </property>
@@ -648,7 +648,7 @@
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QLabel" name="label_10">
+            <widget class="QLabel" name="ql_pose_limits_3">
              <property name="text">
               <string>Z</string>
              </property>
@@ -1508,21 +1508,21 @@
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="label_17">
+          <widget class="QLabel" name="ql_motion_limits_3">
            <property name="text">
             <string>Max Angular Velocity ω</string>
            </property>
           </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_16">
+          <widget class="QLabel" name="ql_motion_limits_1">
            <property name="text">
             <string>Max Acceleration</string>
            </property>
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_15">
+          <widget class="QLabel" name="ql_motion_limits_2">
            <property name="text">
             <string>Max velocity</string>
            </property>
@@ -1549,7 +1549,7 @@
           <widget class="QDoubleSpinBox" name="ds_max_omega"/>
          </item>
          <item row="3" column="0" colspan="2">
-          <widget class="QLabel" name="label_22">
+          <widget class="QLabel" name="ql_motion_limits_4">
            <property name="text">
             <string>Max Angular Acceleration α</string>
            </property>

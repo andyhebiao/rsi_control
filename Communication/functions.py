@@ -69,8 +69,9 @@ def stop_rsi_com(self):
         print("communication already closed")
 
 
-def load_config(self, prompt_obj_callback=None) -> bool:
-    file_path, _ = QFileDialog.getOpenFileName(self, "Load Config File", "./config_files", "Config Files(*.cfg)")
+def load_config(self, file_path="", prompt_obj_callback=None) -> bool:
+    if not file_path:
+        file_path, _ = QFileDialog.getOpenFileName(self, "Load Config File", "./config_files", "Config Files(*.cfg)")
     if not file_path:
         return False
     else:
