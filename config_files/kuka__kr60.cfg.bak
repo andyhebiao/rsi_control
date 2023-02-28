@@ -1,0 +1,48 @@
+[rsi_communication]
+rsi_server_ip = 192.168.10.5
+rsi_server_port = 59152
+rsi_server_mask = 255.255.255.0
+rsi_net_adapter = 以太网
+
+[control]
+min_x = -0.18
+max_x = 0.18
+min_y = -0.18
+max_y = 0.18
+min_z = -0.18
+max_z = 0.18
+min_a = -18.0
+max_a = 18.0
+min_b = -18.0
+max_b = 18.0
+min_c = -18.0
+max_c = 18.0
+max_acc = 0.5
+max_v = 0.025
+max_omega = 14.0
+max_alpha = 14.0
+velocity_factor = 0.25
+omega_factor = 144.0
+
+[3d_print_offset]
+print_os_x = 68.77
+print_os_y = -665.46
+print_os_z = 148.82
+print_m_x =	1000
+print_m_y = 500
+print_m_z = 148.82
+print_k_x = 500
+print_k_y = 1000
+print_k_z = 148.82
+print_r = 500
+print_h = 500
+tool_o_coordinate = [796.8, 3.15, 202.13]
+tool_abc = [0.0, 0.0, 0.0]
+tool_number = 3
+start_position = [90.0, -90.0, 100.0, 5.0, -15.0, -5.0]
+end_position = [90.0, -90.0, 100.0, 5.0, -15.0, -5.0]
+print_a_offset = 0
+print_b_offset = 90
+print_c_offset = 90
+max_thick = 2
+
