@@ -18,17 +18,13 @@ class MyProcess(mp.Process):
             print(time.asctime())
             time.sleep(1)
 
-    def close(self) -> None:
-        print("process close")
-        super().terminate()
-        # super().kill()
-        time.sleep(0.01)
-        self.close()
 
 
 if __name__ == '__main__':
     p = MyProcess()
     p.start()
     time.sleep(3)
-    p.close()
-    time.sleep(3)
+    p.terminate()
+    # p.kill()
+    # p.close()
+    time.sleep(2)

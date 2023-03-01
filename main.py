@@ -9,15 +9,15 @@ __version__ = "2023.02.27"
 
 import sys
 sys.path.append(r"D:\projects\cv")
+
 # import numpy as np
 
 # from cv2 import cv2
 from PyQt5.QtWidgets import QApplication, QMainWindow
 #import control
-import Communication.functions as com_func
 import Communication.ini as com_ini
-import Communication.functions as com_func
-from RsiGui import *
+import Control.ini as ctrl_ini
+from Gui.RsiGui import *
 import sys
 # import threading as td
 # import guiutils as gu
@@ -29,8 +29,6 @@ import sys
 # import print.print_utils as pu
 # import realsense as rs
 
-
-
 # from PyQt5.QtGui import QPixmap
 
 
@@ -40,9 +38,16 @@ class RsiApp(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.parameter_sections_dict = {}
-        com_func.load_config(self, "./config_files/kuka__kr10.cfg", self.ui.pte_com_log.appendPlainText)
-        com_ini.init_args(self)
+        com_ini.init(self)
+        ctrl_ini.init(self)
 
+
+        # self.ui.tab_cartesian_control.setDisabled(True)
+        # print(self.ui.hs_hand_a1)
+        # self.ui.hs_hand_a1.valueChanged.connect(lambda: self.ui.ds_hand_a1.setValue(self.ui.hs_hand_a1.value()))
+        # self.ui.ds_min_x.valueChanged.connect(lambda: self.ui.ds_max_x.setValue(self.))
+        # self.ui.hs_hand_x.setMaximum()
+        # self.ui.hs_hand_x.setMinimum()
 
 
         # self.ui.hs_front_limit.valueChanged.connect(self.cut_depth)

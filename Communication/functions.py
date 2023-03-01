@@ -69,7 +69,7 @@ def stop_rsi_com(self):
         print("communication already closed")
 
 
-def load_config(self, file_path="", prompt_obj_callback=None) -> bool:
+def load_config(self, prompt_obj_callback=None, file_path="") -> bool:
     if not file_path:
         file_path, _ = QFileDialog.getOpenFileName(self, "Load Config File", "./config_files", "Config Files(*.cfg)")
     if not file_path:
@@ -77,6 +77,7 @@ def load_config(self, file_path="", prompt_obj_callback=None) -> bool:
     else:
         cfg = configparser.ConfigParser()
         try:
+            print(str(file_path))
             cfg.read(file_path, encoding='gbk')
         except UnicodeError:
             cfg.read(file_path, encoding='utf-8')
@@ -174,6 +175,6 @@ class RsiUdpServer(mp.Process):
     def terminate(self):
         print("communication stopped")
         super().terminate()
-        time.sleep(0.11)
+        time.sleep(0.01)
         super().close()
 

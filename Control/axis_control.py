@@ -11,54 +11,11 @@ import multiprocessing as mp
 import threading as td
 
 
-
-
-
 def saturate(original, low_limit, up_limit):
     assert low_limit < up_limit, "Limits order wrong"
     original = original if original < up_limit else up_limit
     original = original if original > low_limit else low_limit
     return original
-
-
-def load_control_args(self):
-    gu.load_config_file(self, "control", show_info_callback=self.ui.te_control_info.appendPlainText)
-    self.pose_limits = [self.min_x, self.max_x, self.min_y, self.max_y, self.min_z, self.max_z,
-                        self.min_a, self.max_a, self.min_b, self.max_b, self.min_c, self.max_c]
-
-
-def set_control_args(self):
-    # x y z a b c
-    self.pose_limits = [ds.value() for ds in self.pose_limits_ds[0:12]]  # \
-    self.max_acc = self.ui.ds_max_acc.value()  # m/s^2   / 1000  # change into m # not used yet
-    self.max_v = self.ui.ds_max_v.value()  # m/s     / 1000  # change into m
-    self.max_alpha = self.ui.ds_max_alpha.value()
-    self.max_omega = self.ui.ds_max_omega.value()
-    self.velocity_factor = self.ui.ds_velocity_factor.value()
-    self.omega_factor = self.ui.ds_omega_factor.value()
-    self.ui.te_control_info.appendPlainText(self.time_stamp + "\tThe control parameters are set")
-
-
-def export_control_args(self):
-    parameter_dict = {"min_x": self.min_x,
-                      "max_x": self.max_x,
-                      "min_y": self.min_y,
-                      "max_y": self.max_y,
-                      "min_z": self.min_z,
-                      "max_z": self.max_z,
-                      "min_a": self.min_a,
-                      "max_a": self.max_a,
-                      "min_b": self.min_b,
-                      "max_b": self.max_b,
-                      "min_c": self.min_c,
-                      "max_c": self.max_c,
-                      "max_acc": self.max_acc,
-                      "max_v": self.max_v,
-                      "max_omega": self.max_omega,
-                      "max_alpha": self.max_alpha,
-                      "velocity_factor": self.velocity_factor,
-                      "omega_factor": self.omega_factor}
-    gu.export_config_file(self, "control", parameter_dict, show_info_callback=self.ui.te_control_info.appendPlainText)
 
 
 def set_control_signal(self):
@@ -528,6 +485,13 @@ if __name__ == "__main__":
     # rsi_control = RsiMotionControl(enable_ctl, control_mode, kuka_msg, ini_pose, ref_disp, motion_vec)
     # rsi_control.run()
     # rsi_control.join()
+    kuka_pose_limits = (-0.18, 0.18, -0.18, 0.18, -0.18, 0.18, -18.0, 18.0, -18.0, 18.0, -18.0, 18.0)
+    acceleration_max = 0.5
+    velocity_max = 0.025
+    omega_max = 14.0
+    alpha_max = 14.0
+    velocity_factor = 0.25
+    omega_factor = 144.0
     tff = TransferFunction([1, 3, 3], [1, 2, 1])
     tff.show_space_model()
 
