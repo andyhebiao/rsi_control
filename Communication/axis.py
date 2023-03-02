@@ -28,3 +28,7 @@ def control_cmd_axis(control_vector, ipoc):
            "<IPOC>%d</IPOC>\r\n" \
            "</Sen>" \
         % tuple(control_vector)
+
+
+if __name__ == '__main__':
+    print(control_cmd_axis([1, 2, 3, 4, 5, 6], 1234))

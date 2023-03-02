@@ -6,11 +6,18 @@
 
 
 
-# x, y, z, a, b, c
-kuka_pose_limits = (-0.18, 0.18, -0.18, 0.18, -0.18, 0.18, -18.0, 18.0, -18.0, 18.0, -18.0, 18.0)
-acceleration_max = 0.5
-velocity_max = 0.025
-omega_max = 14.0
-alpha_max = 14.0
-velocity_factor = 0.25
-omega_factor = 144.0
+# cartesian
+cartesian_limits = (-180, 180, -180, 180, -180, 180, -18.0, 18.0, -18.0, 18.0, -18.0, 18.0)  # mm  or  degree
+acceleration_max = 500  # mm/s^2
+velocity_max = 250  # mm/s
+cartesian_omega_max = 14.0  # degree/s
+cartesian_alpha_max = 14.0  # degree/s^2
+velocity_factor = 250  # 100 %
+cartesian_omega_factor = 144.0    # 100 %
+
+
+# axis
+axis_limits = (-10, 10, -10, 10, -10, 10, -10, 10, -10, 10, -10, 10)  # degree
+axis_omega_max = 14.0  # degree/s
+axis_alpha_max = 14.0  # degree/s^2
+axis_omega_factor = 144.0    # 100 %

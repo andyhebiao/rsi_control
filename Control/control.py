@@ -5,8 +5,7 @@
 # @IDE: PyCharm
 import time
 from matplotlib.pyplot import plot, show, grid, legend
-import multiprocessing as mp
-from constant import *
+
 
 
 def saturate(original, low_limit, up_limit):
@@ -78,69 +77,7 @@ class SimpleTransferFunction(object):
         show()
 
 
-class RsiPositionControl(mp.Process):
-    def __init__(self,  initial_pose, reference_pose, present_pose, motion_vector,
-                 pose_limits=kuka_pose_limits,
-                 acc_max=acceleration_max, v_max=velocity_max,  ome_max=omega_max, alp_max=alpha_max,
-                 # omega: angular velocity  degree/s,  alpha: angular acceleration degree/s^2
-                 v_factor=velocity_factor, ome_factor=omega_factor):
-        super().__init__(daemon=True)
-        # motion limits
-        self.pose_limits = pose_limits[:]  # in order of  x y z a b c
-        self.acc_max = acc_max
-        self.v_max = v_max
-        self.ome_max = ome_max
-        self.alp_max = alp_max
-        lock = mp.Lock()
-        self.v_factor = v_factor  # 1 entspricht  0.25 m/s
-        self.ome_factor = ome_factor
-        with lock:
-           self.ini_pose = initial_pose[:]
 
-        self.pre_pose = present_pose
-        self.ref_pose = reference_pose
-        self.motion_vec = motion_vector
-
-    def run(self):
-        self.enable_control.value = 1
-        axes_tfs = [  # translational mSimpleTransferFunctionotion control
-                       {'p3': SimpleTransferFunction([1, 1], [1, 1]),  # prefilter 3
-                        'p2': SimpleTransferFunction([1, 1], [1, 1]),  # prefilter 2
-                        'p1': SimpleTransferFunction([1, 1], [3, 1]),  # prefilter 1
-                        'c': SimpleTransferFunction([3, 1], [1, 3]),  # controller
-                        'i': SimpleTransferFunction([0, 1], [1, 0],  # integrator
-                                                    output_min=-self.v_max, output_max=self.v_max)}
-                      for i in range(3)] + \
-                   [  # rotational motion control
-                       {'p3': SimpleTransferFunction([1, 1], [0.5, 1]),  # prefilter 3
-                        'p2': SimpleTransferFunction([1, 1], [0.5, 1]),  # prefilter 2
-                        'p1': SimpleTransferFunction([1, 1], [3, 1]),  # prefilter 1
-                        'c': SimpleTransferFunction([3, 1], [1, 3]),  # controller
-                        'i': SimpleTransferFunction([0, 1], [1, 0],  # integrator
-                                                    output_min=-self.ome_max, output_max=self.ome_max)}
-                    for i in range(3)]
-        print('start control Unit')
-        lock = mp.Lock()  # resource lock for access the shared variables
-        while True:
-            with lock:
-                pre_pose = self.pre_pose[:]
-                ref_pose = self.ref_disp[:]  # robot present position, unit in m
-            ref_pose = [saturate(ref_pose[i], self.pose_limits[i * 2], self.pose_limits[i * 2 + 1])
-                        for i in range(len(ref_pose))]
-            motion_vec = [axes_tfs[i]['i'].tf(
-                axes_tfs[i]['c'].tf(
-                    axes_tfs[i]["p3"].tf(axes_tfs[i]['p2'].tf(axes_tfs[i]['p1'].tf(ref_pose[i])))
-                    - (pre_pose[i] - self.ini_pose[i])))
-                for i in range(3)] + \
-                [axes_tfs[i]['i'].tf(
-                    axes_tfs[i]['c'].tf(
-                        axes_tfs[i]['p2'].tf(axes_tfs[i]['p1'].tf(ref_pose[i])) - (pre_pose[i] - self.ini_pose[i])))
-                 for i in range(3, 6)]  # xyz in m/s  and  abc in deg/s
-            motion_vec[0:3] = [ele / self.v_factor for ele in motion_vec[0:3]]
-            motion_vec[3:6] = [ele / self.ome_factor for ele in motion_vec[3:6]]
-            with lock:
-                self.motion_vec[:] = motion_vec[:]       # in percentage
-            time.sleep(0.001)
 
 
 if __name__ == '__main__':

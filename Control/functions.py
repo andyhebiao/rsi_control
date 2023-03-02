@@ -6,6 +6,15 @@
 import multiprocessing as mp
 from Gui.functions import *
 import time
+from Control.axis_control import *
+
+
+def update_control_states(self):
+    control_mode = self.ui.combo_control_mode.currentText()
+    update_table(self.pre_pose, self.ui.tw_pre_pose_cartesian if control_mode == "Cartesian" else self.ui.tw_pre_pose_axis)
+    update_table(self.ref_pose, self.ui.tw_ref_pose_cartesian if control_mode == "Cartesian" else self.ui.tw_ref_pose_axis)
+    update_table(self.control_vector, self.ui.tw_control_vector_cartesian if control_mode == "Cartesian" else self.ui.tw_control_vector_axis)
+
 
 def sliders_to_spinboxes(sliders, spinboxes):
     [spinbox.setValue(slider.value()) for (slider, spinbox) in zip(sliders, spinboxes)]
@@ -26,55 +35,71 @@ def set_initial_pose(self, prompt_obj_callback=None):   # kuka initial pose
     prompt_obj_callback(self.time_stamp + "\tThe initial pose is set")
 
 
-def start_control(self, prompt_obj_callback=None):
-    if any(self.ini_pose) and (self.rsi_position_control is None):
-        self.rsi_position_control = RsiPositionControl(control_mode,
-                                                       self.ini_pose, self.ref_displacement, self.pre_pose,
-                                                       self.motion_vec,
-                                                       pose_limits=self.pose_limits,
-                                                       acc_max=self.max_acc, v_max=self.max_v, ome_max=self.max_omega,
-                                                       alp_max=self.max_alpha, v_factor=self.velocity_factor,
-                                                       ome_factor=self.omega_factor)
+def velocity_ramp(control_vector, tangent=0.01):
+    lock = mp.Lock()
+    with lock:
+        local_control_vector = control_vector[:]
+    while True:
+        local_control_vector = [value - tangent if abs(value) > 0.1 else value for value in local_control_vector]
+        if all([abs(value) < 0.05 for value in control_vector]):
+            break
+        control_vector[:] = local_control_vector[:]
+        time.sleep(0.1)
+
+
+def start_control(self):
+    if self.control_process is None:
+        control_mode = self.ui.combo_control_mode.currentText()
+        if control_mode == "Cartesian":
+            pass
+        else:
+            self.rsi_position_control = RsiAxisControl(self.ref_pose, self.pre_pose, self.control_vec,
+                                                       pose_limits=[ds.value() for ds in  self.limits_axis],
+                                                       ome_max=self.ui.ds_max_omega_axis.value(),
+                                                       alp_max=self.ui.ds_max_alpha_axis.value(),
+                                                       ome_factor=self.ui.ds_omega_factor_axis.value())
         self.rsi_position_control.start()
         self.ui.pb_end_control.setEnabled(True)
         self.ui.pb_move_ini_pose.setEnabled(True)
         self.ui.pb_start_control.setDisabled(True)
-        prompt_obj_callback(time.asctime() + "   The control process is started")
+        self.show_info(time.asctime() + "\tThe" + self.ui.combo_control_mode.currentText() + "control process is started!")
     else:
-        prompt_obj_callback(time.asctime() + "  Error: No initial pose is set")
+        self.show_info(time.asctime() + "\tThe control process is already started!")
 
 
 def stop_control(self):
-    print("stop control")
-    pass
+    if self.control_process is not None:
+        self.control_process.terminate()
+        self.control_process.close()
+        mp.Process(target=velocity_ramp, args=(self.control_vector,)).start()
+        self.control_process = None
+        self.ui.pb_end_control.setEnabled(False)
+        self.ui.pb_move_ini_pose.setEnabled(False)
+        self.ui.pb_start_control.setEnabled(True)
+        self.show_info(time.asctime() + "\tThe" + self.ui.combo_control_mode.currentText() + "control process is ended!")
+    else:
+        self.show_info(time.asctime() + "\tThe control process is not started!")
 
 
 def terminate_control(self):
-    print("terminate control")
-    pass
+    if self.control_process is not None:
+        self.control_process.terminate()
+        self.control_process.close()
+        self.control_vector[:] = [0, 0, 0, 0, 0, 0]
+        self.control_process = None
+        self.ui.pb_end_control.setEnabled(False)
+        self.ui.pb_move_ini_pose.setEnabled(False)
+        self.ui.pb_start_control.setEnabled(True)
+        self.show_info(time.asctime() + "\tThe" + self.ui.combo_control_mode.currentText() + "control process is terminated!")
+    else:
+        self.show_info(time.asctime() + "\tThe control process is not started!")
 
 
-
-
-
-
-
-# def start_axis_control(self):
-#     pass
-#
-#
-# def stop_axis_control(self):
-#     pass
-#
-#
-# def terminate_axis_control(self):
-#     pass
-#
-#
-# def set_initial_pose_axis(self, prompt_obj_callback=None):   # kuka initial pose
-#     lock = mp.Lock()
-#     with lock:
-#         self.ini_pose[:] = self.pre_pose[:]
-#     update_table(self.ini_pose, self.ui.table_ini_pose)
-#     self.ui.pb_start_cartesian_control.setEnabled(True)
-#     prompt_obj_callback(self.time_stamp + "\tThe initial pose is set")
+def move_ini_pose(self):
+    if self.control_process is not None:
+        lock = mp.Lock()
+        with lock:
+            self.ref_pose[:] = self.ini_pose[:]
+        self.show_info(time.asctime() + "\tmoving to initial pose.")
+    else:
+        self.show_info(time.asctime() + "\tThe control process is not started!")

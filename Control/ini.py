@@ -9,28 +9,27 @@ from Control.functions import *
 
 def init(self):
     # parameters
-    self.ini_pose = [None] * 6
+    # self.ini_pose = [None] * 6
     self.ref_pose = mp.Array('f', [0, 0, 0, 0, 0, 0])  # reference pose
-    self.poses = [self.ini_pose, self.ref_pose, self.pre_pose, self.control_vec]
-
+    # self.poses = [self.ini_pose, self.ref_pose, self.pre_pose, self.control_vec]
+    self.control_process = None
     # signals
     self.ui.pb_start_control.clicked.connect(lambda: start_control(self))
     self.ui.pb_end_control.clicked.connect(lambda: stop_control(self))
     self.ui.pb_terminate_control.clicked.connect(lambda: terminate_control(self))
-
+    self.ui_timer.timeout.connect(lambda: update_control_states(self))
     # ui
-    self.ui.pb_start_control.setDisabled(True)
+    # self.ui.pb_start_control.setDisabled(True)
     self.ui.pb_end_control.setDisabled(True)
     self.ui.pb_terminate_control.setDisabled(True)
-
 
 
 # cartesian control
 
     self.ds_limits_cartesian = [self.ui.ds_min_x, self.ui.ds_max_x, self.ui.ds_min_y, self.ui.ds_max_y, self.ui.ds_min_z,  self.ui.ds_max_z,
                                 self.ui.ds_min_a, self.ui.ds_max_a, self.ui.ds_min_b, self.ui.ds_max_b, self.ui.ds_min_c, self.ui.ds_max_c]
-    self.tw_pose_tables_cartesian = [self.ui.tw_ini_pose_cartesian, self.ui.tw_pre_pose_cartesian,
-                                     self.ui.tw_ref_pose_cartesian, self.ui.tw_motion_vec_cartesian]
+    self.tw_pose_tables_cartesian = [self.ui.tw_pre_pose_cartesian,
+                                     self.ui.tw_ref_pose_cartesian, self.ui.tw_control_vector_cartesian]
     self.hs_hand_cartesian = [self.ui.hs_hand_x, self.ui.hs_hand_y, self.ui.hs_hand_z,
                               self.ui.hs_hand_a, self.ui.hs_hand_b, self.ui.hs_hand_c]
     self.ds_hand_cartesian = [self.ui.ds_hand_x, self.ui.ds_hand_y, self.ui.ds_hand_z, self.ui.ds_hand_a,
@@ -67,8 +66,8 @@ def init(self):
 
 # axis control
     # parameters:
-    self.tw_pose_tables_axis = [self.ui.tw_ini_pose_axis, self.ui.tw_pre_pose_axis,
-                                self.ui.tw_ref_pose_axis, self.ui.tw_motion_vec_axis]
+    self.tw_pose_tables_axis = [self.ui.tw_pre_pose_axis,
+                                self.ui.tw_ref_pose_axis, self.ui.tw_control_vector_axis]
     self.limits_axis = [self.ui.ds_min_a1, self.ui.ds_max_a1, self.ui.ds_min_a2, self.ui.ds_max_a2, self.ui.ds_min_a3, self.ui.ds_max_a3,
                         self.ui.ds_min_a4, self.ui.ds_max_a4, self.ui.ds_min_a5, self.ui.ds_max_a5, self.ui.ds_min_a6, self.ui.ds_max_a6]
     self.hs_hand_axis = [self.ui.hs_hand_a1, self.ui.hs_hand_a2, self.ui.hs_hand_a3,

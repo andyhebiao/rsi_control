@@ -15,6 +15,7 @@ import configparser
 from PyQt5.QtWidgets import QFileDialog
 from Communication.cartesian import *
 from Communication.axis import *
+from Communication.rsi_udp_server import RsiUdpServer
 
 
 def set_static_ip(self):
@@ -24,15 +25,15 @@ def set_static_ip(self):
                   % (self.rsi_net_adapter, self.rsi_server_ip, self.rsi_server_mask)
         sub.call(set_cmd, shell=True)
     else:
-        print("wrong system")
+        self.show_info("wrong system")
 
 
-def set_dhcp(net_adapter):
+def set_dhcp(self):
     if platform.system() == "Windows":
-        set_cmd = "netsh interface ip set address name=\"%s\" source=\"dhcp\"" % net_adapter
+        set_cmd = "netsh interface ip set address name=\"%s\" source=\"dhcp\"" % self.ui.le_rsi_net_adapter.text()
         sub.call(set_cmd, shell=True)
     else:
-        print("wrong system")
+        self.show_info("wrong system")
 
 
 def get_ipoc(data):
@@ -44,17 +45,18 @@ def get_ipoc(data):
 
 def start_rsi_com(self):
     if self.rsi_com is None:
-        self.com_state.value = 1
         try:
-            self.rsi_com = RsiUdpServer(self.com_state, self.kuka_msg, self.pre_pose, self.motion_vec,
-                                        rsi_server_port=self.rsi_server_port)
+            self.rsi_com = RsiUdpServer(self.ui.combo_control_mode.currentText(),
+                                        self.pre_pose, self.control_vector,  self.ui.sb_rsi_server_port.value())
             self.rsi_com.start()
             self.ui.pb_start_rsi_com.setDisabled(True)
             self.ui.pb_stop_rsi_com.setEnabled(True)
+            self.ui.pb_terminate_rsi_com.setEnabled(True)
+            self.show_info(time.asctime() + "\t" + "The Communication Server is started, start KUKA RSI now!")
         except Exception as error:
-            print(error)
+            self.show_info(time.asctime() + "\t" + str(error))
     else:
-        print("communication already starts")
+        self.show_info(time.asctime() + "\t" + "communication already starts, start KUKA RSI now!")
 
 
 def stop_rsi_com(self):
@@ -65,14 +67,16 @@ def stop_rsi_com(self):
         # self.ini_pose = None
         self.ui.pb_start_rsi_com.setEnabled(True)
         self.ui.pb_stop_rsi_com.setDisabled(True)
+        self.show_info(time.asctime() + "\t" + "communication stopped")
     else:
-        print("communication already closed")
+        self.show_info(time.asctime() + "\t" + "communication already closed")
 
 
-def load_config(self, prompt_obj_callback=None, file_path="") -> bool:
+def load_config(self, file_path="") -> bool:
     if not file_path:
         file_path, _ = QFileDialog.getOpenFileName(self, "Load Config File", "./config_files", "Config Files(*.cfg)")
     if not file_path:
+        self.show_info(time.asctime() + "\t" + "No config file is loaded.")
         return False
     else:
         cfg = configparser.ConfigParser()
@@ -105,14 +109,14 @@ def load_config(self, prompt_obj_callback=None, file_path="") -> bool:
                     # print("self." + key + "=" + value)
                 else:
                     print("redundant parameters:", key, "=", value)
-        if prompt_obj_callback:
-            prompt_obj_callback(time.asctime() + "\t" + file_path + " is loaded.")
+        self.show_info(time.asctime() + "\t" + file_path + " is loaded.")
         return True
 
 
-def export_config_file(self, sections_dict, prompt_obj_callback=None) -> bool:
+def export_config_file(self) -> bool:
     file_path, _ = QFileDialog.getSaveFileName(self, "Export Config File", "./config_files", "Config Files(*.cfg)")
     if not file_path:
+        self.show_info(time.asctime() + "\t" + "No config file is exported.")
         return False
     else:
         cfg = configparser.ConfigParser()
@@ -120,7 +124,7 @@ def export_config_file(self, sections_dict, prompt_obj_callback=None) -> bool:
             cfg.read(file_path, encoding='gbk')
         except UnicodeError:
             cfg.read(file_path, encoding='utf-8')
-        for section, section_dict in sections_dict.items():
+        for section, section_dict in self.parameter_sections_dict.items():
             # execute callbacks to get the actual values
             section_dict = {key: section_dict[key]() for key in section_dict}
             print("section:", section, "section_dict:", section_dict)
@@ -128,53 +132,7 @@ def export_config_file(self, sections_dict, prompt_obj_callback=None) -> bool:
         with open(file_path, 'w', encoding="utf-8") as configfile:
             cfg.write(configfile)
 
-        if prompt_obj_callback:
-            prompt_obj_callback(time.asctime() + "\t" + file_path + " is exported.")
+        self.show_info(time.asctime() + "\t" + file_path + " is exported.")
         return True
 
-
-class RsiUdpServer(mp.Process):
-    def __init__(self, rsi_modem, communication_state,  present_pose, control_vector,
-                 rsi_server_port=59152, buffer_size=1024, daemon=True):
-        super().__init__(daemon=daemon)
-        # self.rsi_modem = rsi_modem
-        self.comm_state = communication_state
-        self.control_vec = control_vector
-        self.buffer_size = buffer_size
-        self.pre_pose = present_pose
-        self.server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.server.bind(("host", rsi_server_port))
-        self.get_pose_callback = extract_pose_axis if rsi_modem == "axis" else extract_pose_cartesian
-        self.create_cmd_callback = control_cmd_axis if rsi_modem == "axis" else control_cmd_cartesian
-
-    def run(self):
-        print('start Rsi Udp Server')
-        lock = mp.Lock()
-        with lock:
-            self.comm_state.value = 2  # starting communication
-        while True:
-            # read and write istposition
-            # print("self.comm_state.value", self.comm_state.value)
-            bytes_data_kuka, address_kuka = self.server.recvfrom(self.buffer_size)  # kuka message
-            self.kuka_msg = bytes_data_kuka.decode("utf-8")
-            ipoc = get_ipoc(bytes_data_kuka)
-            pre_pose = self.get_pose_callback(self.kuka_msg)
-            with lock:
-                self.pre_pose[:] = pre_pose[:]
-                motion_ipoc = self.control_vec[:]
-                self.comm_state.value = 3  # communicating
-
-            motion_ipoc.append(ipoc)
-            motion_cmd = "<Sen Type=\"ImFree\">\r\n" \
-                         "<RKorr X=\"%0.3f\" Y=\"%0.3f\"Z=\"%0.3f\" A=\"%0.3f\" B=\"%0.3f\" C=\"%0.3f\" />\r\n" \
-                         "<IPOC>%d</IPOC>\r\n" \
-                         "</Sen>" \
-                         % tuple(motion_ipoc)
-            self.server.sendto(motion_cmd.encode("utf-8"), address_kuka)
-
-    def terminate(self):
-        print("communication stopped")
-        super().terminate()
-        time.sleep(0.01)
-        super().close()
 
