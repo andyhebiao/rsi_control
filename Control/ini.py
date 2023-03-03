@@ -26,8 +26,9 @@ def init(self):
 
 # cartesian control
 
-    self.ds_limits_cartesian = [self.ui.ds_min_x, self.ui.ds_max_x, self.ui.ds_min_y, self.ui.ds_max_y, self.ui.ds_min_z,  self.ui.ds_max_z,
-                                self.ui.ds_min_a, self.ui.ds_max_a, self.ui.ds_min_b, self.ui.ds_max_b, self.ui.ds_min_c, self.ui.ds_max_c]
+    self.ds_limits_cartesian = [[self.ui.ds_min_x, self.ui.ds_max_x], [self.ui.ds_min_y, self.ui.ds_max_y],
+                                [self.ui.ds_min_z, self.ui.ds_max_z], [self.ui.ds_min_a, self.ui.ds_max_a],
+                                [self.ui.ds_min_b, self.ui.ds_max_b], [self.ui.ds_min_c, self.ui.ds_max_c]]
     self.tw_pose_tables_cartesian = [self.ui.tw_pre_pose_cartesian,
                                      self.ui.tw_ref_pose_cartesian, self.ui.tw_control_vector_cartesian]
     self.hs_hand_cartesian = [self.ui.hs_hand_x, self.ui.hs_hand_y, self.ui.hs_hand_z,
@@ -56,24 +57,28 @@ def init(self):
          "omega_factor_cartesian": self.ui.ds_omega_factor_cartesian.value,
          }
     # signal:
-    [limit.valueChanged.connect(lambda: limits_to_sliders_and_spinboxes(self.ds_limits_cartesian, self.hs_hand_cartesian, self.ds_hand_cartesian)) for limit in self.ds_limits_cartesian]
+    [[limit.valueChanged.connect(
+        lambda: limits_to_sliders_and_spinboxes(self.ini_pose, self.ds_limits_cartesian, self.hs_hand_cartesian,
+                                                self.ds_hand_cartesian)) for limit in limit_group]
+     for limit_group in self.ds_limits_cartesian]
     [slider.valueChanged.connect(lambda: sliders_to_spinboxes(self.hs_hand_cartesian, self.ds_hand_cartesian))
      for slider in self.hs_hand_cartesian]
 
     # ui
-    limits_to_sliders_and_spinboxes(self.ds_limits_cartesian, self.hs_hand_cartesian, self.ds_hand_cartesian)
+    # limits_to_sliders_and_spinboxes(self.ds_limits_cartesian, self.hs_hand_cartesian, self.ds_hand_cartesian)
 
 
 # axis control
     # parameters:
     self.tw_pose_tables_axis = [self.ui.tw_pre_pose_axis,
                                 self.ui.tw_ref_pose_axis, self.ui.tw_control_vector_axis]
-    self.limits_axis = [self.ui.ds_min_a1, self.ui.ds_max_a1, self.ui.ds_min_a2, self.ui.ds_max_a2, self.ui.ds_min_a3, self.ui.ds_max_a3,
-                        self.ui.ds_min_a4, self.ui.ds_max_a4, self.ui.ds_min_a5, self.ui.ds_max_a5, self.ui.ds_min_a6, self.ui.ds_max_a6]
+    self.ds_limits_axis = [[self.ui.ds_min_a1, self.ui.ds_max_a1], [self.ui.ds_min_a2, self.ui.ds_max_a2],
+                           [self.ui.ds_min_a3, self.ui.ds_max_a3], [self.ui.ds_min_a4, self.ui.ds_max_a4],
+                           [self.ui.ds_min_a5, self.ui.ds_max_a5], [self.ui.ds_min_a6, self.ui.ds_max_a6]]
     self.hs_hand_axis = [self.ui.hs_hand_a1, self.ui.hs_hand_a2, self.ui.hs_hand_a3,
                          self.ui.hs_hand_a4, self.ui.hs_hand_a5, self.ui.hs_hand_a6]
-    self.ds_hand_axis = [self.ui.ds_hand_a1, self.ui.ds_hand_a2, self.ui.ds_hand_a3, self.ui.ds_hand_a4,
-                         self.ui.ds_hand_a5, self.ui.ds_hand_a6]
+    self.ds_hand_axis = [self.ui.ds_hand_a1, self.ui.ds_hand_a2, self.ui.ds_hand_a3,
+                         self.ui.ds_hand_a4, self.ui.ds_hand_a5, self.ui.ds_hand_a6]
     self.parameter_sections_dict["axis_control"] = \
         {"min_a1": self.ui.ds_min_a1.value,
          "max_a1": self.ui.ds_max_a1.value,
@@ -93,9 +98,13 @@ def init(self):
          }
 
     # signal:
+    [[limit.valueChanged.connect(
+        lambda: limits_to_sliders_and_spinboxes(self.ini_pose, self.ds_limits_axis, self.hs_hand_axis,
+                                                self.ds_hand_axis)) for limit in limit_group]
+     for limit_group in self.ds_limits_axis]
     [slider.valueChanged.connect(lambda: sliders_to_spinboxes(self.hs_hand_axis, self.ds_hand_axis))
      for slider in self.hs_hand_axis]
 
     # ui:
-    limits_to_sliders_and_spinboxes(self.limits_axis, self.hs_hand_axis, self.ds_hand_axis)
+    # limits_to_sliders_and_spinboxes(self.limits_axis, self.hs_hand_axis, self.ds_hand_axis)
 

@@ -43,6 +43,8 @@ class RsiApp(QMainWindow):
         gui_ini.init(self)
         com_ini.init(self)
         ctrl_ini.init(self)
+        tabs = [self.ui.tab_control, self.ui.tab_cartesian_control, self.ui.tab_axis_control, self.ui.tab_kinectv2, self.ui.tab_realsense,
+                self.ui.tab_webcam, self.ui.tab_touchdesigner, self.ui.tab_grasshopper]
 
         # self.ui.tab_cartesian_control.setDisabled(True)
         # print(self.ui.hs_hand_a1)

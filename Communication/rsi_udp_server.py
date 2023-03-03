@@ -19,15 +19,13 @@ class RsiUdpServer(mp.Process):
         self.buffer_size = buffer_size
         self.pre_pose = present_pose
         self.server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.server.bind(("host", rsi_server_port))
+        self.server.bind(("", rsi_server_port))
         self.get_pose_callback = extract_pose_axis if control_mode == "Axis" else extract_pose_cartesian
         self.create_cmd_callback = control_cmd_axis if control_mode == "Axis" else control_cmd_cartesian
 
     def run(self):
         print('start Rsi Udp Server')
         lock = mp.Lock()
-        # with lock:
-            # self.comm_state.value = 2  # starting communication
         while True:
             # read and write istposition
             # print("self.comm_state.value", self.comm_state.value)

@@ -13,19 +13,21 @@ from Control.control import *
 
 
 class RsiAxisControl(mp.Process):
-    def __init__(self,  reference_pose, present_pose, control_vector,
-                 pose_limits=axis_limits, ome_max=axis_omega_max, alp_max=axis_alpha_max, ome_factor=axis_omega_factor):
+    def __init__(self,  initial_pose, reference_pose, present_pose, control_vector, pose_bounds, ome_max=axis_omega_max,
+                 alp_max=axis_alpha_max, ome_factor=axis_omega_factor, daemon=True):
                  # omega: angular velocity  degree/s,  alpha: angular acceleration degree/s^2
 
-        super().__init__(daemon=True)
+        super().__init__(daemon=daemon)
         # motion limits
-        self.pose_limits = pose_limits[:]  # in order of  x y z a b c
+        # self.lock = mp.Lock()
+        self.pose_bounds = pose_bounds
         self.ome_max = ome_max
         self.alp_max = alp_max
         self.ome_factor = ome_factor
         self.pre_pose = present_pose
         self.ref_pose = reference_pose
         self.control_vector = control_vector
+        self.ini_pose = initial_pose[:]
 
     def run(self):
         axes_tfs = [  # axis SimpleTransfer Function
@@ -42,8 +44,7 @@ class RsiAxisControl(mp.Process):
             with lock:
                 pre_pose = self.pre_pose[:]
                 ref_pose = self.ref_pose[:]  # robot present position, unit in m
-            ref_pose = [saturate(ref_pose[i], self.pose_limits[i * 2], self.pose_limits[i * 2 + 1])
-                        for i in range(len(ref_pose))]
+            ref_pose = [saturate(ref_pose[i], self.pose_bounds[i][0], self.pose_bounds[i][1]) for i in range(6)]
 
             control_vector = [axes_tfs[i]['i'].tf(
                 axes_tfs[i]['c'].tf(
@@ -56,6 +57,8 @@ class RsiAxisControl(mp.Process):
 
 
 if __name__ == "__main__":
-   pass
+    ini_pose = ref_pose = pre_pose = control_vec = [10] * 6
+    axis_offset_limits = (-10, 20, -30, 40, -50, 60, -70, 80, -90, 100, -110, 120)
+    # ctrl = RsiAxisControl(ini_pose, ref_pose, pre_pose, control_vec)
 
 

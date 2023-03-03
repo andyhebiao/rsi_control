@@ -30,7 +30,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tab_communication">
      <attribute name="title">
@@ -314,8 +314,8 @@
      <widget class="QPushButton" name="pb_terminate_control">
       <property name="geometry">
        <rect>
-        <x>930</x>
-        <y>440</y>
+        <x>1000</x>
+        <y>320</y>
         <width>181</width>
         <height>161</height>
        </rect>
@@ -331,8 +331,8 @@ color:rgb(255,255,255)</string>
      <widget class="QPushButton" name="pb_end_control">
       <property name="geometry">
        <rect>
-        <x>940</x>
-        <y>300</y>
+        <x>1000</x>
+        <y>180</y>
         <width>121</width>
         <height>91</height>
        </rect>
@@ -348,8 +348,8 @@ color:rgb(255,255,255)</string>
      <widget class="QPushButton" name="pb_start_control">
       <property name="geometry">
        <rect>
-        <x>940</x>
-        <y>180</y>
+        <x>1000</x>
+        <y>60</y>
         <width>121</width>
         <height>91</height>
        </rect>
@@ -367,24 +367,24 @@ color:rgb(255,255,255)</string>
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>911</width>
+        <width>961</width>
         <height>651</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="tab_cartesian_control">
        <attribute name="title">
-        <string>Cartesian</string>
+        <string>Cartesian Control</string>
        </attribute>
        <widget class="QWidget" name="layoutWidget_20">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>891</width>
-          <height>551</height>
+          <width>931</width>
+          <height>561</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
@@ -395,37 +395,10 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="3">
-          <widget class="QLabel" name="label_58">
+         <item row="4" column="3">
+          <widget class="QLabel" name="label_59">
            <property name="text">
             <string>mm</string>
-           </property>
-          </widget>
-         </item>
-         <item row="19" column="10">
-          <widget class="QLabel" name="label_241">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_c">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="ql_pose_limits_1">
-           <property name="text">
-            <string>X</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -439,24 +412,36 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="9" column="0" colspan="2">
-          <widget class="QLabel" name="ql_motion_limits_1">
+         <item row="1" column="7">
+          <widget class="QLabel" name="label_26">
            <property name="text">
-            <string>Max Acceleration</string>
+            <string>Present Pose</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="11" column="0" colspan="2">
-          <widget class="QLabel" name="ql_motion_limits_3">
-           <property name="text">
-            <string>Max Angular Velocity ω</string>
+         <item row="18" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_a">
+           <property name="readOnly">
+            <bool>false</bool>
            </property>
-          </widget>
-         </item>
-         <item row="11" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_omega_cartesian">
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
            <property name="maximum">
-            <double>200.000000000000000</double>
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_a">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -473,384 +458,31 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="ql_pose_limits_5">
-           <property name="text">
-            <string>B</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_y">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Pose Limits</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_a">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="15" column="2">
-          <widget class="QDoubleSpinBox" name="ds_omega_factor_cartesian">
-           <property name="maximum">
-            <double>500.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="10" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_v_cartesian">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="maximum">
-            <double>1000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="13" column="0">
-          <widget class="QLabel" name="label_19">
-           <property name="text">
-            <string>Control Factors</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="7">
-          <widget class="QLabel" name="label_40">
-           <property name="text">
-            <string>Reference Displace</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="18" column="5">
-          <widget class="QLabel" name="label_107">
-           <property name="text">
-            <string>A</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="15" column="5">
-          <widget class="QLabel" name="label_104">
-           <property name="text">
-            <string>X</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="17" column="10">
-          <widget class="QLabel" name="label_240">
-           <property name="text">
-            <string>mm</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="3">
-          <widget class="QLabel" name="label_59">
-           <property name="text">
-            <string>mm</string>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="3">
-          <widget class="QLabel" name="label_67">
-           <property name="text">
-            <string>mm/s/100%</string>
-           </property>
-          </widget>
-         </item>
-         <item row="16" column="10">
+         <item row="16" column="11">
           <widget class="QLabel" name="label_238">
            <property name="text">
             <string>mm</string>
            </property>
           </widget>
          </item>
-         <item row="15" column="3">
-          <widget class="QLabel" name="label_68">
-           <property name="text">
-            <string>deg/s/100%</string>
-           </property>
-          </widget>
-         </item>
-         <item row="16" column="5">
-          <widget class="QLabel" name="label_105">
-           <property name="text">
-            <string>Y</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_c">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="15" column="0" colspan="2">
-          <widget class="QLabel" name="label_21">
-           <property name="text">
-            <string>Angular Velocity (ω) factor</string>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_acc_cartesian">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="maximum">
-            <double>1000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="12" column="3">
-          <widget class="QLabel" name="label_66">
-           <property name="text">
-            <string>deg/s^2</string>
-           </property>
-          </widget>
-         </item>
-         <item row="20" column="10">
-          <widget class="QLabel" name="label_247">
+         <item row="7" column="3">
+          <widget class="QLabel" name="label_62">
            <property name="text">
             <string>degree</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="8">
-          <widget class="QLabel" name="label_69">
+         <item row="19" column="11">
+          <widget class="QLabel" name="label_241">
            <property name="text">
-            <string>Control Vector</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <string>degree</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="4">
-          <spacer name="horizontalSpacer_10">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>10</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="ql_pose_limits_3">
-           <property name="text">
-            <string>Z</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="15" column="10">
-          <widget class="QLabel" name="label_226">
+         <item row="2" column="3">
+          <widget class="QLabel" name="label_57">
            <property name="text">
             <string>mm</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_y">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="label_31">
-           <property name="text">
-            <string>Max</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="3">
-          <widget class="QLabel" name="label_61">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="12" column="0" colspan="2">
-          <widget class="QLabel" name="ql_motion_limits_4">
-           <property name="text">
-            <string>Max Angular Acceleration α</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="0">
-          <widget class="QLabel" name="label_18">
-           <property name="text">
-            <string>Motion Limits</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="ql_pose_limits_4">
-           <property name="text">
-            <string>A</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="18" column="10">
-          <widget class="QLabel" name="label_39">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="10" column="3">
-          <widget class="QLabel" name="label_64">
-           <property name="text">
-            <string>mm/s</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_b">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="19" column="5">
-          <widget class="QLabel" name="label_108">
-           <property name="text">
-            <string>B</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_x">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-           <property name="value">
-            <double>0.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_b">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="3">
-          <widget class="QLabel" name="label_63">
-           <property name="text">
-            <string>mm/s^2</string>
-           </property>
-          </widget>
-         </item>
-         <item row="20" column="5">
-          <widget class="QLabel" name="label_109">
-           <property name="text">
-            <string>C</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="12" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_alpha_cartesian">
-           <property name="maximum">
-            <double>500.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_14">
-           <property name="text">
-            <string>Min</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="2">
-          <widget class="QDoubleSpinBox" name="ds_velocity_factor_cartesian">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="maximum">
-            <double>1000.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -864,183 +496,7 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="10" column="0" colspan="2">
-          <widget class="QLabel" name="ql_motion_limits_2">
-           <property name="text">
-            <string>Max velocity</string>
-           </property>
-          </widget>
-         </item>
-         <item row="17" column="5">
-          <widget class="QLabel" name="label_106">
-           <property name="text">
-            <string>Z</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="ql_pose_limits_2">
-           <property name="text">
-            <string>Y</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="3">
-          <widget class="QLabel" name="label_60">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="5">
-          <widget class="QLabel" name="label_23">
-           <property name="text">
-            <string>Axis</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_x">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3">
-          <widget class="QLabel" name="label_57">
-           <property name="text">
-            <string>mm</string>
-           </property>
-          </widget>
-         </item>
-         <item row="11" column="3">
-          <widget class="QLabel" name="label_65">
-           <property name="text">
-            <string>deg/s</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_z">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="3">
-          <widget class="QLabel" name="label_62">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="15" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_x">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="16" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_y">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="17" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_z">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="18" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_a">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="19" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_b">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="20" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_c">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="9">
-          <widget class="QPushButton" name="pb_set_hand_zero_cartesian">
-           <property name="text">
-            <string>set all zero</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="7" rowspan="11">
+         <item row="2" column="8" rowspan="11">
           <widget class="QTableWidget" name="tw_ref_pose_cartesian">
            <row>
             <property name="text">
@@ -1079,70 +535,37 @@ color:rgb(255,255,255)</string>
            </column>
           </widget>
          </item>
-         <item row="2" column="8" rowspan="11">
-          <widget class="QTableWidget" name="tw_control_vector_cartesian">
-           <row>
-            <property name="text">
-             <string>x</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>y</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>z</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>a</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>b</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>c</string>
-            </property>
-           </row>
-           <column>
-            <property name="text">
-             <string>‰</string>
-            </property>
-           </column>
+         <item row="3" column="3">
+          <widget class="QLabel" name="label_58">
+           <property name="text">
+            <string>mm</string>
+           </property>
           </widget>
          </item>
-         <item row="1" column="6">
-          <widget class="QLabel" name="label_26">
+         <item row="19" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_b">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="ql_pose_limits_2">
            <property name="text">
-            <string>Present Pose</string>
+            <string>Y</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="13" column="5" colspan="2">
-          <widget class="QLabel" name="label_38">
-           <property name="text">
-            <string>Hand Conrol Signal</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5" colspan="2">
-          <widget class="QLabel" name="label_24">
-           <property name="text">
-            <string>Control Signal</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="8">
+         <item row="0" column="9">
           <widget class="QComboBox" name="combo_signal_source_cartesain">
            <item>
             <property name="text">
@@ -1171,7 +594,46 @@ color:rgb(255,255,255)</string>
            </item>
           </widget>
          </item>
-         <item row="2" column="6" rowspan="11">
+         <item row="2" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_x">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>0.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="16" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_y">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_31">
+           <property name="text">
+            <string>Max</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="7" rowspan="11">
           <widget class="QTableWidget" name="tw_pre_pose_cartesian">
            <row>
             <property name="text">
@@ -1210,7 +672,577 @@ color:rgb(255,255,255)</string>
            </column>
           </widget>
          </item>
-         <item row="15" column="6" colspan="3">
+         <item row="14" column="3">
+          <widget class="QLabel" name="label_67">
+           <property name="text">
+            <string>mm/s/100%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <spacer name="horizontalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>10</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="20" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_c">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="ql_pose_limits_5">
+           <property name="text">
+            <string>B</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="6">
+          <widget class="QLabel" name="label_29">
+           <property name="text">
+            <string>Initial Pose</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="18" column="11">
+          <widget class="QLabel" name="label_39">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="20" column="11">
+          <widget class="QLabel" name="label_247">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="3">
+          <widget class="QLabel" name="label_66">
+           <property name="text">
+            <string>deg/s^2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="ql_pose_limits_1">
+           <property name="text">
+            <string>X</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="ql_pose_limits_3">
+           <property name="text">
+            <string>Z</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_x">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="17" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_z">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="9">
+          <widget class="QLabel" name="label_69">
+           <property name="text">
+            <string>Control Vector</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_y">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="6" rowspan="11">
+          <widget class="QTableWidget" name="tw_ini_pose_cartesian">
+           <row>
+            <property name="text">
+             <string>x</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>y</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>z</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>a</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>b</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>c</string>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>mm/deg</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="6" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_b">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="0" colspan="2">
+          <widget class="QLabel" name="ql_motion_limits_4">
+           <property name="text">
+            <string>Max Angular Acceleration α</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_c">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="ql_pose_limits_4">
+           <property name="text">
+            <string>A</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>Min</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0" colspan="2">
+          <widget class="QLabel" name="ql_motion_limits_1">
+           <property name="text">
+            <string>Max Acceleration</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_acc_cartesian">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="QLabel" name="label_60">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="2">
+          <widget class="QDoubleSpinBox" name="ds_velocity_factor_cartesian">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="3">
+          <widget class="QLabel" name="label_63">
+           <property name="text">
+            <string>mm/s^2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="3">
+          <widget class="QLabel" name="label_61">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_c">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="0">
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>Control Factors</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="0" colspan="2">
+          <widget class="QLabel" name="ql_motion_limits_3">
+           <property name="text">
+            <string>Max Angular Velocity ω</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_b">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="2">
+          <widget class="QDoubleSpinBox" name="ds_omega_factor_cartesian">
+           <property name="maximum">
+            <double>500.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_y">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_alpha_cartesian">
+           <property name="maximum">
+            <double>500.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_z">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="17" column="11">
+          <widget class="QLabel" name="label_240">
+           <property name="text">
+            <string>mm</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Pose Limits</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>Motion Limits</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_v_cartesian">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="0" colspan="2">
+          <widget class="QLabel" name="ql_motion_limits_2">
+           <property name="text">
+            <string>Max velocity</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="8">
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>Reference Pose</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="0" colspan="2">
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>Angular Velocity (ω) factor</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="3">
+          <widget class="QLabel" name="label_65">
+           <property name="text">
+            <string>deg/s</string>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="3">
+          <widget class="QLabel" name="label_68">
+           <property name="text">
+            <string>deg/s/100%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="3">
+          <widget class="QLabel" name="label_64">
+           <property name="text">
+            <string>mm/s</string>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_x">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="9" rowspan="11">
+          <widget class="QTableWidget" name="tw_control_vector_cartesian">
+           <row>
+            <property name="text">
+             <string>x</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>y</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>z</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>a</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>b</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>c</string>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>‰</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="15" column="11">
+          <widget class="QLabel" name="label_226">
+           <property name="text">
+            <string>mm</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_omega_cartesian">
+           <property name="maximum">
+            <double>200.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5" colspan="3">
+          <widget class="QLabel" name="label_24">
+           <property name="text">
+            <string>Control Signal</string>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="5">
+          <widget class="QLabel" name="label_104">
+           <property name="text">
+            <string>X</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="16" column="5">
+          <widget class="QLabel" name="label_105">
+           <property name="text">
+            <string>Y</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="17" column="5">
+          <widget class="QLabel" name="label_106">
+           <property name="text">
+            <string>Z</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="18" column="5">
+          <widget class="QLabel" name="label_107">
+           <property name="text">
+            <string>A</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="19" column="5">
+          <widget class="QLabel" name="label_108">
+           <property name="text">
+            <string>B</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="20" column="5">
+          <widget class="QLabel" name="label_109">
+           <property name="text">
+            <string>C</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="5" colspan="3">
+          <widget class="QLabel" name="label_38">
+           <property name="text">
+            <string>Hand Conrol Signal</string>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="6" colspan="4">
           <widget class="QSlider" name="hs_hand_x">
            <property name="enabled">
             <bool>true</bool>
@@ -1229,7 +1261,7 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="16" column="6" colspan="3">
+         <item row="16" column="6" colspan="4">
           <widget class="QSlider" name="hs_hand_y">
            <property name="cursor">
             <cursorShape>ArrowCursor</cursorShape>
@@ -1245,7 +1277,7 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="17" column="6" colspan="3">
+         <item row="17" column="6" colspan="4">
           <widget class="QSlider" name="hs_hand_z">
            <property name="cursor">
             <cursorShape>ArrowCursor</cursorShape>
@@ -1261,7 +1293,7 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="18" column="6" colspan="3">
+         <item row="18" column="6" colspan="4">
           <widget class="QSlider" name="hs_hand_a">
            <property name="cursor">
             <cursorShape>ArrowCursor</cursorShape>
@@ -1277,7 +1309,7 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="19" column="6" colspan="3">
+         <item row="19" column="6" colspan="4">
           <widget class="QSlider" name="hs_hand_b">
            <property name="cursor">
             <cursorShape>ArrowCursor</cursorShape>
@@ -1293,7 +1325,7 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="20" column="6" colspan="3">
+         <item row="20" column="6" colspan="4">
           <widget class="QSlider" name="hs_hand_c">
            <property name="cursor">
             <cursorShape>ArrowCursor</cursorShape>
@@ -1321,15 +1353,176 @@ color:rgb(255,255,255)</string>
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>891</width>
-          <height>531</height>
+          <width>931</width>
+          <height>547</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="11" column="0">
-          <widget class="QLabel" name="label_228">
+         <item row="0" column="9">
+          <widget class="QComboBox" name="combo_signal_source_axis">
+           <item>
+            <property name="text">
+             <string>Hand</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>GH</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Unity</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="ql_pose_limits_13">
            <property name="text">
-            <string>Control Factors</string>
+            <string>A5</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_a1">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="11">
+          <widget class="QLabel" name="label_218">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="11">
+          <widget class="QLabel" name="label_219">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="18" column="11">
+          <widget class="QLabel" name="label_222">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="ql_pose_limits_18">
+           <property name="text">
+            <string>A6</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="3">
+          <widget class="QLabel" name="label_234">
+           <property name="text">
+            <string>deg/s</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLabel" name="label_235">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="19" column="11">
+          <widget class="QLabel" name="label_223">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_230">
+           <property name="text">
+            <string>Min</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_a6">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_a4">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_229">
+           <property name="text">
+            <string>Motion Limits</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="3">
+          <widget class="QLabel" name="label_239">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="17" column="11">
+          <widget class="QLabel" name="label_221">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="9">
+          <widget class="QLabel" name="label_246">
+           <property name="text">
+            <string>Motion Vector</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_a3">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -1349,36 +1542,63 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="9" column="3">
-          <widget class="QLabel" name="label_234">
-           <property name="text">
-            <string>deg/s</string>
+         <item row="5" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_a4">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
            </property>
           </widget>
          </item>
-         <item row="16" column="5">
-          <widget class="QLabel" name="ql_pose_limits_21">
+         <item row="12" column="0" colspan="2">
+          <widget class="QLabel" name="label_243">
            <property name="text">
-            <string>A3</string>
+            <string>Angular Velocity (ω) factor</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="7">
+          <widget class="QLabel" name="label_249">
+           <property name="text">
+            <string>Present Pose</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="19" column="7" colspan="2">
-          <widget class="QSlider" name="hs_hand_a6">
-           <property name="cursor">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-           <property name="minimum">
-            <number>0</number>
-           </property>
-           <property name="maximum">
-            <number>99</number>
-           </property>
+         <item row="1" column="4">
+          <spacer name="horizontalSpacer_11">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>5</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="ql_pose_limits_14">
+           <property name="text">
+            <string>A4</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLabel" name="label_236">
+           <property name="text">
+            <string>degree</string>
            </property>
           </widget>
          </item>
@@ -1395,327 +1615,10 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_a1">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="18" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_a5">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="3">
-          <widget class="QLabel" name="label_237">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="18" column="10">
-          <widget class="QLabel" name="label_222">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="18" column="5">
-          <widget class="QLabel" name="ql_pose_limits_20">
-           <property name="text">
-            <string>A5</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="7" colspan="2">
-          <widget class="QSlider" name="hs_hand_a1">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="cursor">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-           <property name="minimum">
-            <number>0</number>
-           </property>
-           <property name="maximum">
-            <number>99</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="17" column="5">
-          <widget class="QLabel" name="ql_pose_limits_22">
-           <property name="text">
-            <string>A4</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="10" column="0" colspan="2">
-          <widget class="QLabel" name="ql_motion_limits_9">
-           <property name="text">
-            <string>Max Angular Acceleration α</string>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="5">
-          <widget class="QLabel" name="ql_pose_limits_24">
-           <property name="text">
-            <string>A1</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_a3">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_a4">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="18" column="7" colspan="2">
-          <widget class="QSlider" name="hs_hand_a5">
-           <property name="cursor">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-           <property name="minimum">
-            <number>0</number>
-           </property>
-           <property name="maximum">
-            <number>99</number>
-           </property>
-           <property name="value">
-            <number>0</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="0" colspan="2">
-          <widget class="QLabel" name="ql_motion_limits_11">
-           <property name="text">
-            <string>Max Angular Velocity ω</string>
-           </property>
-          </widget>
-         </item>
-         <item row="19" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_a6">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3">
-          <widget class="QLabel" name="label_235">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="15" column="5">
-          <widget class="QLabel" name="ql_pose_limits_23">
-           <property name="text">
-            <string>A2</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_a5">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>Pose Limits</string>
-           </property>
-          </widget>
-         </item>
          <item row="10" column="3">
           <widget class="QLabel" name="label_232">
            <property name="text">
             <string>deg/s^2</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_a3">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="2">
-          <widget class="QDoubleSpinBox" name="ds_max_a6">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="15" column="10">
-          <widget class="QLabel" name="label_219">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="3">
-          <widget class="QLabel" name="label_233">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="12" column="0" colspan="2">
-          <widget class="QLabel" name="label_243">
-           <property name="text">
-            <string>Angular Velocity (ω) factor</string>
-           </property>
-          </widget>
-         </item>
-         <item row="16" column="10">
-          <widget class="QLabel" name="label_220">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_a5">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="16" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_a3">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="3">
-          <widget class="QLabel" name="label_236">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="0">
-          <widget class="QLabel" name="label_229">
-           <property name="text">
-            <string>Motion Limits</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="ql_pose_limits_16">
-           <property name="text">
-            <string>A1</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_a4">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="3">
-          <widget class="QLabel" name="label_227">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="8">
-          <widget class="QLabel" name="label_246">
-           <property name="text">
-            <string>Motion Vector</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -1726,46 +1629,14 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="14" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_a1">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
+         <item row="11" column="0">
+          <widget class="QLabel" name="label_228">
+           <property name="text">
+            <string>Control Factors</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_a2">
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="17" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_a4">
-           <property name="readOnly">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <double>-2000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>2000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="7" rowspan="10">
+         <item row="2" column="8" rowspan="10">
           <widget class="QTableWidget" name="tw_ref_pose_axis">
            <row>
             <property name="text">
@@ -1804,13 +1675,16 @@ color:rgb(255,255,255)</string>
            </column>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_230">
-           <property name="text">
-            <string>Min</string>
+         <item row="15" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_a2">
+           <property name="readOnly">
+            <bool>false</bool>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -1824,102 +1698,23 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="7" column="3">
-          <widget class="QLabel" name="label_239">
+         <item row="9" column="0" colspan="2">
+          <widget class="QLabel" name="ql_motion_limits_11">
            <property name="text">
-            <string>degree</string>
+            <string>Max Angular Velocity ω</string>
            </property>
           </widget>
          </item>
-         <item row="17" column="10">
-          <widget class="QLabel" name="label_221">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="12" column="3">
-          <widget class="QLabel" name="label_242">
-           <property name="text">
-            <string>deg/s/100%</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="ql_pose_limits_13">
-           <property name="text">
-            <string>A5</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="17" column="7" colspan="2">
-          <widget class="QSlider" name="hs_hand_a4">
-           <property name="cursor">
-            <cursorShape>ArrowCursor</cursorShape>
+         <item row="2" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_a1">
+           <property name="decimals">
+            <number>2</number>
            </property>
            <property name="minimum">
-            <number>0</number>
+            <double>-2000.000000000000000</double>
            </property>
            <property name="maximum">
-            <number>99</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="4">
-          <spacer name="horizontalSpacer_11">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>5</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="ql_pose_limits_14">
-           <property name="text">
-            <string>A4</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="16" column="7" colspan="2">
-          <widget class="QSlider" name="hs_hand_a3">
-           <property name="cursor">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-           <property name="minimum">
-            <number>0</number>
-           </property>
-           <property name="maximum">
-            <number>99</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="ql_pose_limits_18">
-           <property name="text">
-            <string>A6</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <double>2000.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -1933,13 +1728,43 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="label_231">
-           <property name="text">
-            <string>Max</string>
+         <item row="12" column="2">
+          <widget class="QDoubleSpinBox" name="ds_omega_factor_axis">
+           <property name="maximum">
+            <double>500.000000000000000</double>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_a2">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="QLabel" name="label_233">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_a3">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -1950,90 +1775,8 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="12" column="2">
-          <widget class="QDoubleSpinBox" name="ds_omega_factor_axis">
-           <property name="maximum">
-            <double>500.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="19" column="5">
-          <widget class="QLabel" name="ql_pose_limits_19">
-           <property name="text">
-            <string>A6</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="8" rowspan="10">
-          <widget class="QTableWidget" name="tw_control_vector_axis">
-           <row>
-            <property name="text">
-             <string>A1</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>A2</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>A3</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>A4</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>A5</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>A6</string>
-            </property>
-           </row>
-           <column>
-            <property name="text">
-             <string>%</string>
-            </property>
-           </column>
-          </widget>
-         </item>
-         <item row="15" column="7" colspan="2">
-          <widget class="QSlider" name="hs_hand_a2">
-           <property name="cursor">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-           <property name="minimum">
-            <number>0</number>
-           </property>
-           <property name="maximum">
-            <number>99</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QDoubleSpinBox" name="ds_min_a6">
-           <property name="minimum">
-            <double>-90.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>90.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="15" column="9">
-          <widget class="QDoubleSpinBox" name="ds_hand_a2">
+         <item row="16" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_a3">
            <property name="readOnly">
             <bool>false</bool>
            </property>
@@ -2045,48 +1788,24 @@ color:rgb(255,255,255)</string>
            </property>
           </widget>
          </item>
-         <item row="13" column="9">
-          <widget class="QPushButton" name="pb_set_hand_zero_axis">
-           <property name="text">
-            <string>set all zero</string>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="10">
-          <widget class="QLabel" name="label_218">
+         <item row="3" column="3">
+          <widget class="QLabel" name="label_237">
            <property name="text">
             <string>degree</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="7">
-          <widget class="QLabel" name="label_245">
+         <item row="2" column="0">
+          <widget class="QLabel" name="ql_pose_limits_16">
            <property name="text">
-            <string>Reference Pose</string>
+            <string>A1</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="19" column="10">
-          <widget class="QLabel" name="label_223">
-           <property name="text">
-            <string>degree</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="6">
-          <widget class="QLabel" name="label_249">
-           <property name="text">
-            <string>Present Pose</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="6" rowspan="10">
+         <item row="2" column="7" rowspan="10">
           <widget class="QTableWidget" name="tw_pre_pose_axis">
            <row>
             <property name="text">
@@ -2125,47 +1844,392 @@ color:rgb(255,255,255)</string>
            </column>
           </widget>
          </item>
-         <item row="13" column="5" colspan="2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Pose Limits</string>
+           </property>
+          </widget>
+         </item>
+         <item row="16" column="11">
+          <widget class="QLabel" name="label_220">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="8">
+          <widget class="QLabel" name="label_245">
+           <property name="text">
+            <string>Reference Pose</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QDoubleSpinBox" name="ds_min_a5">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="0" colspan="2">
+          <widget class="QLabel" name="ql_motion_limits_9">
+           <property name="text">
+            <string>Max Angular Acceleration α</string>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="5" colspan="3">
           <widget class="QLabel" name="label_70">
            <property name="text">
             <string>Hand Conrol Signal</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="5" colspan="2">
+         <item row="0" column="5" colspan="3">
           <widget class="QLabel" name="label_244">
            <property name="text">
             <string>Control Signal</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="9">
-          <widget class="QComboBox" name="combo_signal_source_axis">
-           <item>
+         <item row="7" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_a6">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="3">
+          <widget class="QLabel" name="label_242">
+           <property name="text">
+            <string>deg/s/100%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="9" rowspan="10">
+          <widget class="QTableWidget" name="tw_control_vector_axis">
+           <row>
             <property name="text">
-             <string>Hand</string>
+             <string>A1</string>
             </property>
-           </item>
-           <item>
+           </row>
+           <row>
             <property name="text">
-             <string>KinectV2</string>
+             <string>A2</string>
             </property>
-           </item>
-           <item>
+           </row>
+           <row>
             <property name="text">
-             <string>WebCam</string>
+             <string>A3</string>
             </property>
-           </item>
-           <item>
+           </row>
+           <row>
             <property name="text">
-             <string>RealsenseD435</string>
+             <string>A4</string>
             </property>
-           </item>
-           <item>
+           </row>
+           <row>
             <property name="text">
-             <string>TouchDesign</string>
+             <string>A5</string>
             </property>
-           </item>
+           </row>
+           <row>
+            <property name="text">
+             <string>A6</string>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>%</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="19" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_a6">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="2">
+          <widget class="QDoubleSpinBox" name="ds_max_a5">
+           <property name="minimum">
+            <double>-90.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>90.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="17" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_a4">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_231">
+           <property name="text">
+            <string>Max</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="3">
+          <widget class="QLabel" name="label_227">
+           <property name="text">
+            <string>degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="18" column="10">
+          <widget class="QDoubleSpinBox" name="ds_hand_a5">
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <double>-2000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>2000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="5">
+          <widget class="QLabel" name="ql_pose_limits_24">
+           <property name="text">
+            <string>A1</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="5">
+          <widget class="QLabel" name="ql_pose_limits_23">
+           <property name="text">
+            <string>A2</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="16" column="5">
+          <widget class="QLabel" name="ql_pose_limits_21">
+           <property name="text">
+            <string>A3</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="17" column="5">
+          <widget class="QLabel" name="ql_pose_limits_22">
+           <property name="text">
+            <string>A4</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="18" column="5">
+          <widget class="QLabel" name="ql_pose_limits_20">
+           <property name="text">
+            <string>A5</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="19" column="5">
+          <widget class="QLabel" name="ql_pose_limits_19">
+           <property name="text">
+            <string>A6</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="6" colspan="4">
+          <widget class="QSlider" name="hs_hand_a1">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="cursor">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>99</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="6" colspan="4">
+          <widget class="QSlider" name="hs_hand_a2">
+           <property name="cursor">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>99</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="16" column="6" colspan="4">
+          <widget class="QSlider" name="hs_hand_a3">
+           <property name="cursor">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>99</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="17" column="6" colspan="4">
+          <widget class="QSlider" name="hs_hand_a4">
+           <property name="cursor">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>99</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="18" column="6" colspan="4">
+          <widget class="QSlider" name="hs_hand_a5">
+           <property name="cursor">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>99</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="19" column="6" colspan="4">
+          <widget class="QSlider" name="hs_hand_a6">
+           <property name="cursor">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>99</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="6">
+          <widget class="QLabel" name="label_37">
+           <property name="text">
+            <string>Initial Pose</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="6" rowspan="10">
+          <widget class="QTableWidget" name="tw_ini_pose_axis">
+           <row>
+            <property name="text">
+             <string>A1</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>A2</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>A3</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>A4</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>A5</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>A6</string>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>deg</string>
+            </property>
+           </column>
           </widget>
          </item>
         </layout>
@@ -2181,7 +2245,7 @@ color:rgb(255,255,255)</string>
       <item>
        <widget class="QTabWidget" name="kinectv2_frames">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_control">
          <attribute name="title">
@@ -3105,7 +3169,7 @@ color:rgb(255,255,255)</string>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="tab_touchdesign">
+    <widget class="QWidget" name="tab_touchdesigner">
      <attribute name="title">
       <string>Touchdesigner</string>
      </attribute>
@@ -4586,7 +4650,41 @@ color:rgb(255,255,255)</string>
     </widget>
     <widget class="QWidget" name="tab_grasshopper">
      <attribute name="title">
-      <string>GH Control</string>
+      <string>GH</string>
+     </attribute>
+     <widget class="QSpinBox" name="sb_gh_server_port">
+      <property name="geometry">
+       <rect>
+        <x>108</x>
+        <y>100</y>
+        <width>133</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>65535</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_71">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>100</y>
+        <width>72</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Server Port</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_unity">
+     <attribute name="title">
+      <string>Unity</string>
      </attribute>
     </widget>
    </widget>

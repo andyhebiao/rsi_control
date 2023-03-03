@@ -16,6 +16,8 @@ from PyQt5.QtWidgets import QFileDialog
 from Communication.cartesian import *
 from Communication.axis import *
 from Communication.rsi_udp_server import RsiUdpServer
+from Gui.functions import update_table
+from Control.functions import limits_to_sliders_and_spinboxes
 
 
 def set_static_ip(self):
@@ -43,30 +45,62 @@ def get_ipoc(data):
     return ipoc
 
 
+def get_ini_pose(self):
+    lock = mp.Lock()
+    while True:
+        with lock:
+            pre_pose = self.pre_pose[:]
+        if all([value != 0 for value in pre_pose]):
+            with lock:
+                self.ini = pre_pose[:]
+            break
+        time.sleep(0.5)
+    if self.ui.cb_control_mode.currentText() == "Cartesian":
+        update_table(pre_pose, self.ui.tw_ini_pose_cartesian)
+        limits_to_sliders_and_spinboxes(self.ini_pose, self.ds_limits_cartesian,
+                                        self.hs_hand_cartesian, self.ds_hand_cartesian)
+    else:
+        update_table(pre_pose, self.ui.tw_ini_pose_cartesian)
+        limits_to_sliders_and_spinboxes(self.ini_pose, self.ds_limits_axis,
+                                        self.hs_hand_axis, self.ds_hand_axis)
+    self.show_info(time.asctime() + "\tget ini pose success")
+
+
 def start_rsi_com(self):
     if self.rsi_com is None:
-        try:
-            self.rsi_com = RsiUdpServer(self.ui.combo_control_mode.currentText(),
-                                        self.pre_pose, self.control_vector,  self.ui.sb_rsi_server_port.value())
-            self.rsi_com.start()
-            self.ui.pb_start_rsi_com.setDisabled(True)
-            self.ui.pb_stop_rsi_com.setEnabled(True)
-            self.ui.pb_terminate_rsi_com.setEnabled(True)
-            self.show_info(time.asctime() + "\t" + "The Communication Server is started, start KUKA RSI now!")
-        except Exception as error:
-            self.show_info(time.asctime() + "\t" + str(error))
+        # try:
+        self.rsi_com = RsiUdpServer(self.ui.combo_control_mode.currentText(),
+                                    self.pre_pose, self.control_vector,  self.ui.sb_rsi_server_port.value())
+        self.rsi_com.start()
+        self.ui.pb_start_rsi_com.setDisabled(True)
+        self.ui.pb_stop_rsi_com.setEnabled(True)
+        # self.ui.pb_terminate_rsi_com.setEnabled(True)
+        self.ui.combo_control_mode.setDisabled(True)
+        self.show_info(time.asctime() + "\t" + "The Communication Server is started, start KUKA RSI now!")
+        td.Thread(target=get_ini_pose, args=(self,)).start()
+        # except Exception as error:
+        #     self.show_info(time.asctime() + "\t" + str(error))
+        if self.ui.combo_control_mode.currentText() == "Cartesian":
+            [tab.setEnabled(True) for tab in self.cartesian_control_tabs]
+            print("enable cartesian tabs")
+        else:
+            [tab.setEnabled(True) for tab in self.axis_control_tabs]
+            print("enable axis tabs")
     else:
         self.show_info(time.asctime() + "\t" + "communication already starts, start KUKA RSI now!")
 
 
 def stop_rsi_com(self):
     if self.rsi_com is not None:
-        self.rsi_com.end()
-        self.com_state.value = 0
+        self.rsi_com.terminate()
+        time.sleep(0.5)
+        self.rsi_com.close()
         self.rsi_com = None
-        # self.ini_pose = None
+        self.ini_pose = None
         self.ui.pb_start_rsi_com.setEnabled(True)
         self.ui.pb_stop_rsi_com.setDisabled(True)
+        self.ui.combo_control_mode.setEnabled(True)
+        [tab.setDisabled(True) for tab in self.all_tabs]
         self.show_info(time.asctime() + "\t" + "communication stopped")
     else:
         self.show_info(time.asctime() + "\t" + "communication already closed")

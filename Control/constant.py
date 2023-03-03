@@ -17,7 +17,9 @@ cartesian_omega_factor = 144.0    # 100 %
 
 
 # axis
-axis_limits = (-10, 10, -10, 10, -10, 10, -10, 10, -10, 10, -10, 10)  # degree
+axis_offset_limits = (-10, 10, -10, 10, -10, 10, -10, 10, -10, 10, -10, 10)  # degree
+# axis_pose_bounds = [[axis_offset_limits[i * 2] + self.ini_pose[i], pose_limits[i * 2 + 1] + self.ini_pose[i]]
+#                            for i in range(6)]
 axis_omega_max = 14.0  # degree/s
 axis_alpha_max = 14.0  # degree/s^2
 axis_omega_factor = 144.0    # 100 %

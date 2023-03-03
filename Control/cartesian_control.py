@@ -10,17 +10,18 @@ from matplotlib.pyplot import plot, show, grid, legend
 import multiprocessing as mp
 from Control.control import *
 from Control.constant import *
+from Control.constant import *
 
 
-class RsiPositionControl(mp.Process):
-    def __init__(self,  initial_pose, reference_pose, present_pose, motion_vector,
-                 pose_limits=kuka_pose_limits,
-                 acc_max=acceleration_max, v_max=velocity_max,  ome_max=omega_max, alp_max=alpha_max,
+class RsiCartesianControl(mp.Process):
+    def __init__(self,  initial_pose, reference_pose, present_pose, control_vector,
+                 pose_bounds,
+                 acc_max=acceleration_max, v_max=velocity_max,  ome_max=cartesian_omega_max, alp_max=cartesian_alpha_max,
                  # omega: angular velocity  degree/s,  alpha: angular acceleration degree/s^2
-                 v_factor=velocity_factor, ome_factor=omega_factor):
+                 v_factor=velocity_factor, ome_factor=cartesian_omega_factor):
         super().__init__(daemon=True)
         # motion limits
-        self.pose_limits = pose_limits[:]  # in order of  x y z a b c
+        self.pose_bounds = pose_bounds[:]  # in order of  x y z a b c
         self.acc_max = acc_max
         self.v_max = v_max
         self.ome_max = ome_max
@@ -28,12 +29,14 @@ class RsiPositionControl(mp.Process):
         lock = mp.Lock()
         self.v_factor = v_factor  # 1 entspricht  0.25 m/s
         self.ome_factor = ome_factor
-        with lock:
-           self.ini_pose = initial_pose[:]
-
+        self.ini_pose = initial_pose[:]
         self.pre_pose = present_pose
         self.ref_pose = reference_pose
-        self.motion_vec = motion_vector
+        self.control_vector = control_vector
+        # self.pose_bounds = [[self.pose_limits[i * 2] + self.ini_pose[i], self.pose_limits[i * 2 + 1] + self.ini_pose[i]]
+        #                     for i in range(6)]
+        # print("cartesian bounds:", self.pose_bounds)
+        # print([(self.pose_bounds[i][0], self.pose_bounds[i][1]) for i in range(6)])
 
     def run(self):
         axes_tfs = [  # translational mSimpleTransferFunctionotion control
@@ -57,25 +60,20 @@ class RsiPositionControl(mp.Process):
         while True:
             with lock:
                 pre_pose = self.pre_pose[:]
-                ref_pose = self.ref_disp[:]  # robot present position, unit in m
-            ref_pose = [saturate(ref_pose[i], self.pose_limits[i * 2], self.pose_limits[i * 2 + 1])
-                        for i in range(len(ref_pose))]
-            motion_vec = [axes_tfs[i]['i'].tf(
+                ref_pose = self.ref_pose[:]  # robot present position, unit in m
+            ref_pose = [saturate(ref_pose[i], self.pose_bounds[i][0], self.pose_bounds[i][1]) for i in range(6)]
+            control_vector = [axes_tfs[i]['i'].tf(
                 axes_tfs[i]['c'].tf(
-                    axes_tfs[i]["p3"].tf(axes_tfs[i]['p2'].tf(axes_tfs[i]['p1'].tf(ref_pose[i])))
-                    - (pre_pose[i] - self.ini_pose[i])))
+                    axes_tfs[i]["p3"].tf(axes_tfs[i]['p2'].tf(axes_tfs[i]['p1'].tf(ref_pose[i]))) - pre_pose[i]))
                 for i in range(3)] + \
                 [axes_tfs[i]['i'].tf(
-                    axes_tfs[i]['c'].tf(
-                        axes_tfs[i]['p2'].tf(axes_tfs[i]['p1'].tf(ref_pose[i])) - (pre_pose[i] - self.ini_pose[i])))
+                    axes_tfs[i]['c'].tf(axes_tfs[i]['p2'].tf(axes_tfs[i]['p1'].tf(ref_pose[i])) - pre_pose[i]))
                  for i in range(3, 6)]  # xyz in m/s  and  abc in deg/s
-            motion_vec[0:3] = [ele / self.v_factor for ele in motion_vec[0:3]]
-            motion_vec[3:6] = [ele / self.ome_factor for ele in motion_vec[3:6]]
+            control_vector[0:3] = [ele / self.v_factor for ele in control_vector[0:3]]
+            control_vector[3:6] = [ele / self.ome_factor for ele in control_vector[3:6]]
             with lock:
-                self.motion_vec[:] = motion_vec[:]       # in percentage
+                self.control_vector[:] = control_vector[:]       # in percentage
             time.sleep(0.001)
-
-
 
 
 if __name__ == "__main__":
@@ -104,7 +102,6 @@ if __name__ == "__main__":
     alpha_max = 14.0
     velocity_factor = 0.25
     omega_factor = 144.0
-    tff = TransferFunction([1, 3, 3], [1, 2, 1])
-    tff.show_space_model()
+
 
 
