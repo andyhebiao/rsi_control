@@ -56,6 +56,7 @@ def velocity_ramp(control_vector, tangent=0.01):
 
 
 def start_control(self):
+    # self.ui.pb_end_control.setEnabled(True)
     if self.control_process is not None:
         self.show_info(time.asctime() + "\tThe control process is already started!")
     elif not self.if_got_ini_pose:
@@ -82,8 +83,8 @@ def start_control(self):
                                                        ome_factor=self.ui.ds_omega_factor_axis.value())
         self.rsi_position_control.start()
         self.ui.pb_end_control.setEnabled(True)
-        self.ui.pb_move_ini_pose.setEnabled(True)
-        self.ui.pb_start_control.setDisabled(True)
+        self.ui.pb_terminate_control.setEnabled(True)
+        [obj.setDisabled(True) for obj in self.control_disable_ui_objects]
         self.show_info(
             time.asctime() + "\tThe" + self.ui.combo_control_mode.currentText() + "control process is started!")
 
@@ -95,8 +96,8 @@ def stop_control(self):
         mp.Process(target=velocity_ramp, args=(self.control_vector,)).start()
         self.control_process = None
         self.ui.pb_end_control.setEnabled(False)
-        self.ui.pb_move_ini_pose.setEnabled(False)
-        self.ui.pb_start_control.setEnabled(True)
+        self.ui.pb_terminate_control.setEnabled(False)
+        [obj.setDisabled(False) for obj in self.control_disable_ui_objects]
         self.show_info(time.asctime() + "\tThe" + self.ui.combo_control_mode.currentText() + "control process is ended!")
     else:
         self.show_info(time.asctime() + "\tThe control process is not started!")
@@ -109,8 +110,8 @@ def terminate_control(self):
         self.control_vector[:] = [0, 0, 0, 0, 0, 0]
         self.control_process = None
         self.ui.pb_end_control.setEnabled(False)
-        self.ui.pb_move_ini_pose.setEnabled(False)
         self.ui.pb_start_control.setEnabled(True)
+        [obj.setDisabled(False) for obj in self.control_disable_ui_objects]
         self.show_info(time.asctime() + "\tThe" + self.ui.combo_control_mode.currentText() + "control process is terminated!")
     else:
         self.show_info(time.asctime() + "\tThe control process is not started!")

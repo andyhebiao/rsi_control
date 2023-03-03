@@ -13,6 +13,7 @@ def init(self):
     self.ref_pose = mp.Array('f', [0, 0, 0, 0, 0, 0])  # reference pose
     # self.poses = [self.ini_pose, self.ref_pose, self.pre_pose, self.control_vec]
     self.control_process = None
+
     # signals
     self.ui.pb_start_control.clicked.connect(lambda: start_control(self))
     self.ui.pb_end_control.clicked.connect(lambda: stop_control(self))
@@ -35,6 +36,10 @@ def init(self):
                               self.ui.hs_hand_a, self.ui.hs_hand_b, self.ui.hs_hand_c]
     self.ds_hand_cartesian = [self.ui.ds_hand_x, self.ui.ds_hand_y, self.ui.ds_hand_z, self.ui.ds_hand_a,
                               self.ui.ds_hand_b, self.ui.ds_hand_c]
+    # self.cartesian_control_disable_ui_objects = \
+    #     sum(self.ds_limits_cartesian, []) + \
+    #     [self.ui.ds_max_acc_cartesian, self.ui.ds_max_v_cartesian, self.ui.ds_max_omega_cartesian,
+    #      self.ui.ds_max_alpha_cartesian, self.ui.ds_velocity_factor_cartesian, self.ui.ds_omega_factor_cartesian]
 
     self.parameter_sections_dict["cartesian_control"] = \
         {"min_x": self.ui.ds_min_x.value,
@@ -79,6 +84,9 @@ def init(self):
                          self.ui.hs_hand_a4, self.ui.hs_hand_a5, self.ui.hs_hand_a6]
     self.ds_hand_axis = [self.ui.ds_hand_a1, self.ui.ds_hand_a2, self.ui.ds_hand_a3,
                          self.ui.ds_hand_a4, self.ui.ds_hand_a5, self.ui.ds_hand_a6]
+    # self.axis_control_disable_ui_objects = \
+    #     sum(self.ds_limits_cartesian, []) + \
+    #     [self.ui.ds_max_omega_axis, self.ui.ds_max_alpha_axis, self.ui.ds_omega_factor_axis]
     self.parameter_sections_dict["axis_control"] = \
         {"min_a1": self.ui.ds_min_a1.value,
          "max_a1": self.ui.ds_max_a1.value,
@@ -108,3 +116,10 @@ def init(self):
     # ui:
     # limits_to_sliders_and_spinboxes(self.limits_axis, self.hs_hand_axis, self.ds_hand_axis)
 
+    self.control_disable_ui_objects = \
+        sum(self.ds_limits_cartesian, []) + \
+        [self.ui.ds_max_acc_cartesian, self.ui.ds_max_v_cartesian, self.ui.ds_max_omega_cartesian,
+         self.ui.ds_max_alpha_cartesian, self.ui.ds_velocity_factor_cartesian, self.ui.ds_omega_factor_cartesian] \
+        + sum(self.ds_limits_axis, []) + \
+        [self.ui.ds_max_omega_axis, self.ui.ds_max_alpha_axis, self.ui.ds_omega_factor_axis] \
+        + [self.ui.pb_start_control]
